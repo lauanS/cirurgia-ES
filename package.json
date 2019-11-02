@@ -1,0 +1,24 @@
+{
+  "name": "cirurgia-es",
+  "version": "1.0.0",
+  "description": "Trabalho de Engenharia de Software",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lauanS/cirurgia-ES.git"
+  },
+  "author": "lauanS",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/lauanS/cirurgia-ES/issues"
+  },
+  "homepage": "https://github.com/lauanS/cirurgia-ES#readme",
+  "dependencies": {
+    "bootstrap": "^4.3.1",
+    "jquery": "^3.4.1",
+    "popper.js": "^1.16.0"
+  }
+}
