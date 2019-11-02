@@ -5,6 +5,10 @@ class Cirurgia {
     private $id;
     private $nome;
     private $descricao;
+    
+    public Cirurgia($nome) {
+        $this->nome = $nome;
+    }
 
     public function getNome(){
         return $this->nome;            
@@ -25,6 +29,24 @@ class Cirurgia {
     public function busca($nome){
        
     }
+    
+    public function findAllCirurgia() {
+        $conn = Connection::getInstance();
+        
+        if(!$conn) {
+            $msg = "Problema na conexão!";
+        } else {
+            $sql = "SELECT * FROM cirurgia ORDER BY cirurgia.nome";
+            $result[] = mysqli_query($conn, $sql);
+            if($result) {
+                return $result;
+            } else {
+                $msg = $sql;
+            }
+            return $msg;
+        }
+    }
+    
 }
 
 
