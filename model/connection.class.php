@@ -5,7 +5,7 @@ class Connection{
     public static $instance;
     
     private function __contruct(){
-        
+            
     }
     
     public static function getInstance() {
