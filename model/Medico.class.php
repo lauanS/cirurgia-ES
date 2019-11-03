@@ -7,7 +7,8 @@ class Medico {
     private $crm;
     private $telefone;
     
-    public function __construct($nome, $crm, $telefone) {
+    public function __construct($id, $nome, $crm, $telefone) {
+        $this->id = $id;
         $this->nome = $nome;
         $this->crm = $crm;
         $this->telefone = $telefone;
@@ -48,7 +49,7 @@ class Medico {
             if($res = mysqli_query($conn, $sql)) {
                 if(mysqli_num_rows($res) > 0) {
                     while ($row = mysqli_fetch_array($res)) { 
-                        $objeto = new Medico($row['nome'], $row['crm'], $row['telefone']);
+                        $objeto = new Medico($row['id'], $row['nome'], $row['crm'], $row['telefone']);
                         array_push($result, $objeto);
                     }
                 }
@@ -66,10 +67,10 @@ class Medico {
         if(!$conn) {
             $msg = "Problema na conexão!";
         } else {
-            $sql = "SELECT * FROM cirurgia WHERE nome LIKE '".$nome."%'";
+            $sql = "SELECT * FROM medico WHERE medico.nome LIKE '".$nome."%'";
             if($res = mysqli_query($conn, $sql)) {
                 $row = mysqli_fetch_row($res);
-                $objeto = new Medico($row['nome'], $row['crm'], $row['telefone']);
+                $objeto = new Medico($row['id'], $row['nome'], $row['crm'], $row['telefone']);
                 return $objeto;
             } else {
                 $msg = $sql;

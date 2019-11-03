@@ -9,6 +9,16 @@ class Paciente {
     private $sexo;
     private $telefone;
     private $convenio;
+    
+    public function __construct($id, $nome, $cpf, $nascimento, $sexo, $telefone, $convenio) {
+        $this->id= $id
+        $this->nome = $nome;
+        $this->cpf = $cpf;
+        $this->nascimento = $nascimento;
+        $this->sexo = $sexo;
+        $this->telefone = $telefone;
+        $this->convenio = $convenio;
+    }
 
     public function getId(){
         return $this->id;
@@ -38,12 +48,63 @@ class Paciente {
         return $this->convenio;
     }
 
-    public function buscaPorNome($nome){
-
+    public function buscaPorNome($nome) {
+        $conn = Connection::getInstance();
+        
+        if(!$conn) {
+            $msg = "Problema na conexão!";
+        } else {
+            $sql = "SELECT * FROM paciente WHERE paciente.nome LIKE '".$nome."%'";
+            if($res = mysqli_query($conn, $sql)) {
+                $row = mysqli_fetch_row($res);
+                $objeto = new Paciente($row['id'], $row['nome'], $row['cpf'], $row['nascimento'], $row['sexo'], $row['telefone'], $row['convenio']);
+                return $objeto;
+            } else {
+                $msg = $sql;
+            }
+            return $msg;
+        }
     }
 
     public function buscaPorCpf($cpf){
-
+        $conn = Connection::getInstance();
+        
+        if(!$conn) {
+            $msg = "Problema na conexão!";
+        } else {
+            $sql = "SELECT * FROM paciente WHERE paciente.cpf LIKE '".$cpf."%'";
+            if($res = mysqli_query($conn, $sql)) {
+                $row = mysqli_fetch_row($res);
+                $objeto = new Paciente($row['id'], $row['nome'], $row['cpf'], $row['nascimento'], $row['sexo'], $row['telefone'], $row['convenio']);
+                return $objeto;
+            } else {
+                $msg = $sql;
+            }
+            return $msg;
+        }
+    }
+    
+    public function buscaTodos() {
+        $conn = Connection::getInstance();
+        
+        if(!$conn) {
+            $msg = "Problema na conexão!";
+        } else {
+            $sql = "SELECT * FROM paciente ORDER BY paciente.nome";
+            $result = array();
+            if($res = mysqli_query($conn, $sql)) {
+                if(mysqli_num_rows($res) > 0) {
+                    while ($row = mysqli_fetch_array($res)) { 
+                        $objeto = new Paciente($row['id'], $row['nome'], $row['cpf'], $row['nascimento'], $row['sexo'], $row['telefone'], $row['convenio']);
+                        array_push($result, $objeto);
+                    }
+                }
+                return $result;
+            } else {
+                $msg = $sql;
+            }
+            return $msg;
+        }
     }
 
 
