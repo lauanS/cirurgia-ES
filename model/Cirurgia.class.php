@@ -5,13 +5,17 @@ class Cirurgia {
     private $id;
     private $nome;
     private $descricao;
-    
+
     public Cirurgia($nome) {
         $this->nome = $nome;
     }
 
+    public function getId(){
+        return $this->id;
+    }
+
     public function getNome(){
-        return $this->nome;            
+        return $this->nome;
     }
 
     public function setNome($nome){
@@ -24,15 +28,11 @@ class Cirurgia {
 
     public function setDescricao($descricao){
         $this->descricao = $descricao
-    } 
-
-    public function busca($nome){
-       
     }
-    
-    public function findAllCirurgia() {
+
+    public function buscarTodas() {
         $conn = Connection::getInstance();
-        
+
         if(!$conn) {
             $msg = "Problema na conexão!";
         } else {
@@ -46,7 +46,7 @@ class Cirurgia {
             return $msg;
         }
     }
-    
+
 }
 
 
