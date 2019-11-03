@@ -42,6 +42,10 @@ class Paciente {
 
     }
 
+    public function buscaPorCpf($cpf){
+
+    }
+
 
 }
 

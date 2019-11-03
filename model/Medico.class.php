@@ -23,9 +23,15 @@ class Medico {
         return $this->telefone;
     }
 
-    public function busca($nome){
+    public function buscaPorNome($nome){
 
     }
+
+    public function buscaPorCrm($crm){
+
+    }
+
+
 }
 
 
