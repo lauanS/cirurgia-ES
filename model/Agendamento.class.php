@@ -12,23 +12,19 @@ class Agendamento {
     private $id;
     private $data;
     private $descricao;
-    private $anestesiaLocal;
-    private $anestesiaGeral;
     private $previsaoHoras;
 
     private $cirurgia;
     private $paciente;
     private $medico;
     
-    public function __construct($id, $medico, $paciente, $cirurgia, $data, $descricao, $anestesiaLocal, $anestesiaGeral, $previsaoHoras) {
+    public function __construct($id, $medico, $paciente, $cirurgia, $data, $descricao, $previsaoHoras) {
         $this->id = $id;
         $this->medico = $medico;
         $this->paciente = $paciente;
         $this->cirurgia = $cirurgia;
         $this->data = $data;
         $this->descricao = $descricao;
-        $this->anestesiaLocal = $anestesiaLocal;
-        $this->anestesiaGeral = $anestesiaGeral;
         $this->previsaoHoras = $previsaoHoras;
     }
 
@@ -69,22 +65,6 @@ class Agendamento {
         $this->descricao = $descricao
     } 
     
-    public function getAnestesiaLocal(){
-        return $this->anestesiaLocal;
-    }
-
-    public function setAnestesiaLocal($anestesiaLocal){
-        $this->anestesiaLocal = $anestesiaLocal;
-    }
-    
-    public function getAnestesiaGeral(){
-        return $this->anestesiaGeral;
-    }
-
-    public function setAnestesiaGeral($anestesiaGeral){
-        $this->anestesiaGeral = $anestesiaGeral;
-    }
-    
     public function getPrevisaoHoras(){
         return $this->previsaoHoras;
     }
@@ -97,12 +77,12 @@ class Agendamento {
         $conn = Connection::getInstance();
 
         if(!conn){
-            $msg = 'Problemas de conexão'
+            $msg = 'Problemas de conexão';
         }
         else {
             $sql = ""
 
-            $result = mysqli_query($conn, $sql)
+            $result = mysqli_query($conn, $sql);
 
             if($result){
 
@@ -124,7 +104,7 @@ class Agendamento {
                         $medico = new Medico('', '', '', '');
                         $paciente = new Paciente('', '', '', '', '', '', '');
                         $cirurgia = new Cirurgia('', '', '');
-                        $objeto = new Agendamento($row['id'], $medico, $paciente, $cirurgia, $row['data'], $row['descricao'], $row['anestesia_local'], $row['anestesia_geral'], $row['previsao_horas']);
+                        $objeto = new Agendamento($row['id'], $medico, $paciente, $cirurgia, $row['data'], $row['descricao'], $row['previsao_horas']);
                         array_push($result, $objeto);
                     }
                 }
@@ -142,7 +122,7 @@ class Agendamento {
         if(!$conn) {
             $msg = "Problema na conexão!";
         } else {
-            $sql = "INSERT INTO agendamento (id_cirurgia, id_medico, id_paciente, observacao, anestesia_local, anestesia_geral, previsao_horas) VALUES ('".$this->cirurgia->getId()."', '".$this->medico->getId()."', '".$this->paciente->getId()."', '".$this->descricao."', '".$this-> anestesiaLocal."', '".$this->anestesiaGeral."', '".$this->previsaoHoras."')";
+            $sql = "INSERT INTO agendamento (id_cirurgia, id_medico, id_paciente, observacao, previsao_horas) VALUES ('".$this->cirurgia->getId()."', '".$this->medico->getId()."', '".$this->paciente->getId()."', '".$this->descricao."', '".$this->previsaoHoras."')";
             if(mysqli_query($conn, $sql)) {
                 $msg = 'Cirurgia agendada com sucesso';
             } else {
