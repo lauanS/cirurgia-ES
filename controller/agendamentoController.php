@@ -13,10 +13,9 @@
         private $agendamento;
 
         public function __construct(){
-            $this->agendamento = new Agendamento();
-            $this->cirurgia = new Cirurgia("","","");
-            $this->paciente = new Paciente();
-            $this->medico = new Medico();
+            $this->cirurgia = new Cirurgia('','','');
+            $this->paciente = new Paciente('', '', '', '', '', '', '');;
+            $this->medico =  new Medico('', '', '', '');;
         }
 
         public function indexAction(){

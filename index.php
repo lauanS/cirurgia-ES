@@ -21,10 +21,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 <?php
 
     require_once 'controller/AgendamentoController.php';
+    require_once 'model/connection.class.php';
 
     $obj = new AgendamentoController();
     $obj->indexAction();
-    $obj->salvar();
+    // $obj->printT();
+    //$obj->salvar();
 ?>
 
 <html>

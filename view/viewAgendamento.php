@@ -118,7 +118,13 @@
                             </div>
                         </div>
                         <!-- MEDICO -->
-                        <?php require_once './view/viewFormMedico.php'?>
+                        <?php
+                            require_once './view/viewFormMedico.php';
+                            require_once './view/viewExtra.php';
+                        ?>
+                        <div>
+                            <button class="btn btn--radius-2 btn--red" type="submit">Confirmar</button>
+                        </div>
                     </form>
                 </div>
             </div>

@@ -59,6 +59,3 @@
         </label>
     </div>
 </div>
-<div>
-    <button class="btn btn--radius-2 btn--red" type="submit">Confirmar</button>
-</div>
