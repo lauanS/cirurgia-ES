@@ -33,7 +33,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
         <section class="content">
             <div class="contato">
                 <h3>Form contato</h3>
-                <form class="form" method="POST" action="./controller/agendarCirurgia.php">        
+                <form class="form" method="POST" action="./controller/agendamentoController.php">  
+                    <input hidden="true" name="method" value="buscarPacientes">
                     <input class="field" name="paciente" placeholder="nome do paciente">
                     <input type="submit" value="enviar">
 

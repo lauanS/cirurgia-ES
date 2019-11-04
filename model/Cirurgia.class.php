@@ -72,6 +72,24 @@ class Cirurgia {
             return $msg;
         }
     }
+    
+    public function buscaPorId($nome) {
+        $conn = Connection::getInstance();
+        
+        if(!$conn) {
+            $msg = "Problema na conexão!";
+        } else {
+            $sql = "SELECT * FROM cirurgia WHERE cirurgia.id LIKE '".$id."%'";
+            if($res = mysqli_query($conn, $sql)) {
+                $row = mysqli_fetch_row($res);
+                $objeto = new Cirurgia($row['id'], $row['nome'], $row['descricao']);
+                return $objeto;
+            } else {
+                $msg = $sql;
+            }
+            return $msg;
+        }
+    }
 
 }
 

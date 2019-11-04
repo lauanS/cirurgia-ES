@@ -84,6 +84,24 @@ class Paciente {
         }
     }
     
+    public function buscaPorId($Id){
+        $conn = Connection::getInstance();
+        
+        if(!$conn) {
+            $msg = "Problema na conexão!";
+        } else {
+            $sql = "SELECT * FROM paciente WHERE paciente.id LIKE '".$id."%'";
+            if($res = mysqli_query($conn, $sql)) {
+                $row = mysqli_fetch_row($res);
+                $objeto = new Paciente($row['id'], $row['nome'], $row['cpf'], $row['nascimento'], $row['sexo'], $row['telefone'], $row['convenio']);
+                return $objeto;
+            } else {
+                $msg = $sql;
+            }
+            return $msg;
+        }
+    }
+    
     public function buscaTodos() {
         $conn = Connection::getInstance();
         
