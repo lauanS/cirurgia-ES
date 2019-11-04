@@ -112,18 +112,18 @@
                             </div>
                         </div>
                         <div class="form-row p-t-20">
-                            <label class="label label--block">Gênero</label>
-                            <div class="p-t-15">
-                                <label class="radio-container m-r-55">Masculino
-                                    <input type="radio" checked="checked" name="masculino">
-                                    <span class="checkmark"></span>
-                                </label>
-                                <label class="radio-container">Feminino
-                                    <input type="radio" name="feminino">
-                                    <span class="checkmark"></span>
-                                </label>
+                                <label class="label label--block">Gênero</label>
+                                <div class="p-t-15">
+                                    <label class="radio-container m-r-55">Masculino
+                                        <input type="radio" checked="checked" name="exist">
+                                        <span class="checkmark"></span>
+                                    </label>
+                                    <label class="radio-container">Feminino
+                                        <input type="radio" name="exist">
+                                        <span class="checkmark"></span>
+                                    </label>
+                                </div>
                             </div>
-                        </div>
                         <!-- MEDICO -->
                         <?php
                             require_once './view/viewFormMedico.php';
