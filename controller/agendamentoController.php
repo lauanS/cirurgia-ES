@@ -100,8 +100,9 @@
             // $previsaoHoras = $_POST["data"];
 
             $agendamento = new Agendamento($medico, $paciente, $cirurgia, $data, $observacao, $previsaoHoras);
-
-            $agendamento->insere();
+            
+            if($agendamento->validaData())
+                $agendamento->insere();
         }
     }
 ?>

@@ -99,26 +99,17 @@ class Agendamento {
 
         if(!conn){
             $msg = 'Problemas de conexão';
-        }
-        else {
-            $data = $this->data;
-            $sql = "SELECT * FROM agendamento WHERE agendamento.id_medico = ".$this->medico->getId()." AND agendamento.data = ".$this->paciente->getId()." AND agendamento.id_cirurgia";
+        } else {
+            $sql = "SELECT * FROM agendamento WHERE agendamento.id_medico = ".$this->medico->getId()." AND agendamento.data_inicio BETWEEN '".$this->dataInicio()."' AND '".$this->dataFim()."' OR agendamento.data_fim BETWEEN '".$this->dataInicio()."' AND '".$this->dataFim()."'";
+            
             $result = array();
-            if($res = mysqli_query($conn, $sql)) {
-                if(mysqli_num_rows($res) > 0) {
-                    while ($row = mysqli_fetch_array($res)) {
-                        $medico = new Medico('', '', '', '');
-                        $paciente = new Paciente('', '', '', '', '', '', '');
-                        $cirurgia = new Cirurgia('', '', '');
-                        $objeto = new Agendamento($row['id'], $medico, $paciente, $cirurgia, $row['data'], $row['descricao'], $row['previsao_horas']);
-                        array_push($result, $objeto);
-                    }
-                }
-                return $result;
+            $res = mysqli_query($conn, $sql); 
+            if(mysqli_num_rows($res) > 0) {
+                return false;
             } else {
-                $msg = $sql;
+                return true;
             }
-            return $msg;
+            return false;
         }
     }
 
