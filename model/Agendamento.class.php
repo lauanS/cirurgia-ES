@@ -2,7 +2,7 @@
 function MyAutoload($className) {
     $extension = spl_autoload_extensions();
     require_once (__DIR__ . '/' . $className . $extension);
-    
+
     spl_autoload_extensions('.class.php');
     spl_autoload_register('MyAutoload');
 }
@@ -17,7 +17,7 @@ class Agendamento {
     private $cirurgia;
     private $paciente;
     private $medico;
-    
+
     public function __construct($id, $medico, $paciente, $cirurgia, $data, $descricao, $previsaoHoras) {
         $this->id = $id;
         $this->medico = $medico;
@@ -29,50 +29,50 @@ class Agendamento {
     }
 
     public function getCirurgia(){
-        return $this->cirurgia;            
+        return $this->cirurgia;
     }
-    
+
     public function setCirurgia($cirurgia){
-        $this->cirurgia = $cirurgia;            
+        $this->cirurgia = $cirurgia;
     }
 
     public function getPaciente(){
-        return $this->paciente;            
+        return $this->paciente;
     }
     public function setPaciente($paciente){
-        $this->paciente = $paciente;            
+        $this->paciente = $paciente;
     }
 
     public function getMedico(){
-        return $this->medico;            
+        return $this->medico;
     }
     public function setMedico($medico){
-        $this->medico = $medico;            
+        $this->medico = $medico;
     }
 
     public function getData(){
-        return $this->data;            
+        return $this->data;
     }
     public function setData($data){
-        $this->data = $data;            
+        $this->data = $data;
     }
 
     public function getDescricao(){
         return $this->descricao;
     }
-    
+
     public function setDescricao($descricao){
-        $this->descricao = $descricao
-    } 
-    
+        $this->descricao = $descricao;
+    }
+
     public function getPrevisaoHoras(){
         return $this->previsaoHoras;
     }
-    
+
     public function setPrevisaoHoras($previsaoHoras){
         $this->previsaoHoras = $previsaoHoras;
     }
-    
+
     public function buscaPorData($data){
         $conn = Connection::getInstance();
 
@@ -80,7 +80,7 @@ class Agendamento {
             $msg = 'Problemas de conexão';
         }
         else {
-            $sql = ""
+            $sql = "";
 
             $result = mysqli_query($conn, $sql);
 
@@ -92,15 +92,15 @@ class Agendamento {
 
     public function buscaTodos(){
         $conn = Connection::getInstance();
-        
+
         if(!$conn) {
             $msg = "Problema na conexão!";
         } else {
             $sql = "SELECT * FROM agendamento ORDER BY agendamento.data";
             $result = array();
-            if($res = mysqli_query($conn, $sql)) { 
-                if(mysqli_num_rows($res) > 0) { 
-                    while ($row = mysqli_fetch_array($res)) { 
+            if($res = mysqli_query($conn, $sql)) {
+                if(mysqli_num_rows($res) > 0) {
+                    while ($row = mysqli_fetch_array($res)) {
                         $medico = new Medico('', '', '', '');
                         $paciente = new Paciente('', '', '', '', '', '', '');
                         $cirurgia = new Cirurgia('', '', '');
@@ -114,11 +114,11 @@ class Agendamento {
             }
             return $msg;
         }
-    }  
-    
+    }
+
     public function insere(){
         $conn = Connection::getInstance();
-        
+
         if(!$conn) {
             $msg = "Problema na conexão!";
         } else {
