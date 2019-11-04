@@ -6,7 +6,7 @@ class Medico {
     private $nome;
     private $crm;
     private $telefone;
-    
+
     public function __construct($id, $nome, $crm, $telefone) {
         $this->id = $id;
         $this->nome = $nome;
@@ -30,17 +30,9 @@ class Medico {
         return $this->telefone;
     }
 
-    public function buscaPorNome($nome){
-
-    }
-
-    public function buscaPorCrm($crm){
-
-    }
-
     public function buscaTodos() {
         $conn = Connection::getInstance();
-        
+
         if(!$conn) {
             $msg = "Problema na conexão!";
         } else {
@@ -48,7 +40,7 @@ class Medico {
             $result = array();
             if($res = mysqli_query($conn, $sql)) {
                 if(mysqli_num_rows($res) > 0) {
-                    while ($row = mysqli_fetch_array($res)) { 
+                    while ($row = mysqli_fetch_array($res)) {
                         $objeto = new Medico($row['id'], $row['nome'], $row['crm'], $row['telefone']);
                         array_push($result, $objeto);
                     }
@@ -60,17 +52,17 @@ class Medico {
             return $msg;
         }
     }
-    
+
     public function buscaPorNome($nome) {
         $conn = Connection::getInstance();
-        
+
         if(!$conn) {
             $msg = "Problema na conexão!";
         } else {
             $sql = "SELECT * FROM medico WHERE medico.nome LIKE '".$nome."%'";
             if($res = mysqli_query($conn, $sql)) {
                 $row = mysqli_fetch_row($res);
-                $objeto = new Medico($row['id'], $row['nome'], $row['crm'], $row['telefone']);
+                $objeto = new Medico($row[0]['id'], $row['nome'], $row['crm'], $row['telefone']);
                 return $objeto;
             } else {
                 $msg = $sql;
@@ -78,10 +70,10 @@ class Medico {
             return $msg;
         }
     }
-    
+
     public function buscaPorId($id) {
         $conn = Connection::getInstance();
-        
+
         if(!$conn) {
             $msg = "Problema na conexão!";
         } else {

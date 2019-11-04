@@ -21,7 +21,7 @@ class Cirurgia {
     }
 
     public function setNome($nome){
-        $this->nome = $nome
+        $this->nome = $nome;
     }
 
     public function getDescricao(){
@@ -29,7 +29,7 @@ class Cirurgia {
     }
 
     public function setDescricao($descricao){
-        $this->descricao = $descricao
+        $this->descricao = $descricao;
     }
 
     public function buscaTodos() {
@@ -55,18 +55,20 @@ class Cirurgia {
         }
     }
     public function printT(){
-        echo '<h1>AAAA</h1>'
+        echo '<h1>AAAA</h1>';
     }
     public function buscaPorNome($nome) {
         $conn = Connection::getInstance();
-
         if(!$conn) {
             $msg = "Problema na conexão!";
         } else {
-            $sql = "SELECT * FROM cirurgia WHERE cirurgia.nome LIKE ".$nome."%";
+            $sql = "SELECT * FROM cirurgia WHERE cirurgia.nome LIKE '".$nome."%'";
             if($res = mysqli_query($conn, $sql)) {
-                $row = mysqli_fetch_row($res);
-                $objeto = new Cirurgia($row['id'], $row['nome'], $row['descricao']);
+                if(mysqli_num_rows($res) > 0) {
+                    while ($row = mysqli_fetch_array($res)) {
+                        $objeto = new Cirurgia($row['id'], $row['nome'], $row['descricao']);
+                    }
+                }
                 return $objeto;
             } else {
                 $msg = $sql;

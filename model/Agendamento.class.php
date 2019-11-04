@@ -8,8 +8,6 @@ function MyAutoload($className) {
 }
 
 class Agendamento {
-
-    private $id;
     private $data;
     private $descricao;
     private $previsaoHoras;
@@ -18,8 +16,7 @@ class Agendamento {
     private $paciente;
     private $medico;
 
-    public function __construct($id, $medico, $paciente, $cirurgia, $data, $descricao, $previsaoHoras) {
-        $this->id = $id;
+    public function __construct($medico, $paciente, $cirurgia, $data, $descricao, $previsaoHoras) {
         $this->medico = $medico;
         $this->paciente = $paciente;
         $this->cirurgia = $cirurgia;

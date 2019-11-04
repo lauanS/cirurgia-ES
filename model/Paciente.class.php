@@ -9,9 +9,9 @@ class Paciente {
     private $sexo;
     private $telefone;
     private $convenio;
-    
+
     public function __construct($id, $nome, $cpf, $nascimento, $sexo, $telefone, $convenio) {
-        $this->id= $id
+        $this->id= $id;
         $this->nome = $nome;
         $this->cpf = $cpf;
         $this->nascimento = $nascimento;
@@ -50,7 +50,7 @@ class Paciente {
 
     public function buscaPorNome($nome) {
         $conn = Connection::getInstance();
-        
+
         if(!$conn) {
             $msg = "Problema na conexão!";
         } else {
@@ -68,7 +68,7 @@ class Paciente {
 
     public function buscaPorCpf($cpf){
         $conn = Connection::getInstance();
-        
+
         if(!$conn) {
             $msg = "Problema na conexão!";
         } else {
@@ -83,10 +83,10 @@ class Paciente {
             return $msg;
         }
     }
-    
+
     public function buscaPorId($Id){
         $conn = Connection::getInstance();
-        
+
         if(!$conn) {
             $msg = "Problema na conexão!";
         } else {
@@ -101,10 +101,10 @@ class Paciente {
             return $msg;
         }
     }
-    
+
     public function buscaTodos() {
         $conn = Connection::getInstance();
-        
+
         if(!$conn) {
             $msg = "Problema na conexão!";
         } else {
@@ -112,7 +112,7 @@ class Paciente {
             $result = array();
             if($res = mysqli_query($conn, $sql)) {
                 if(mysqli_num_rows($res) > 0) {
-                    while ($row = mysqli_fetch_array($res)) { 
+                    while ($row = mysqli_fetch_array($res)) {
                         $objeto = new Paciente($row['id'], $row['nome'], $row['cpf'], $row['nascimento'], $row['sexo'], $row['telefone'], $row['convenio']);
                         array_push($result, $objeto);
                     }
