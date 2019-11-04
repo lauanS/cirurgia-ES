@@ -45,7 +45,7 @@
                     <h2 class="title">RESERVA DE AGENDA CIRÚRGICA </h2>
                 </div>
                 <div class="card-body">
-                    <form class="form" method="POST" action="./controller/AgendamentoController.php">
+                    <form class="form" method="POST"> <!-- action="./controller/AgendamentoController.php"> !-->
                         <input type="hidden" name="method" value="salvar">
                         <div class="form-row">
                             <div class="name">Nome</div>
