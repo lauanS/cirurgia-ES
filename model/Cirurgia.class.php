@@ -1,5 +1,7 @@
 <?php
 
+require_once 'model/connection.class.php';
+
 class Cirurgia {
 
     private $id;
@@ -59,6 +61,7 @@ class Cirurgia {
     }
     public function buscaPorNome($nome) {
         $conn = Connection::getInstance();
+        
         if(!$conn) {
             $msg = "Problema na conexão!";
         } else {

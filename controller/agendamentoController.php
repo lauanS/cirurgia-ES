@@ -1,9 +1,9 @@
 <?php
 
-    require_once 'model/Agendamento.class.php';
     require_once 'model/Cirurgia.class.php';
     require_once 'model/Medico.class.php';
     require_once 'model/Paciente.class.php';
+    require_once 'model/Agendamento.class.php';
 
     class AgendamentoController{
         // Variaveis
@@ -85,14 +85,12 @@
         }
 
         public function salvar(){
-            $c = new Cirurgia("", "", "");
-            $cirurgia = $c->buscaPorNome("Artrodese");
-
+            $c = new Cirurgia('', '', '');
+            $cirurgia = $c->buscaPorNome('Artrodese');
             $m = new Medico('', '', '', '');
-            $medico = $m->buscaPorNome("Georgin");
-
+            $medico = $m->buscaPorNome('Georgin');
             $p = new Paciente('', '', '', '', '', '', '');
-            $paciente = $p->buscaPorNome("Georgin");
+            $paciente = $p->buscaPorNome('Georgin');
 
             $data = '2019-10-12 00:00:00';
             $observacao = 'Paciente com alergia a anestesia';
@@ -101,12 +99,7 @@
             // $observacao = $_POST["data"];
             // $previsaoHoras = $_POST["data"];
 
-            $this->agendamento = new Agendamento($medico,
-                                                $paciente,
-                                                $cirurgia,
-                                                $data,
-                                                $descricao,
-                                                $previsaoHoras);
+            $agendamento = new Agendamento($medico, $paciente, $cirurgia, $data, $observacao, $previsaoHoras);
 
             $agendamento->insere();
         }

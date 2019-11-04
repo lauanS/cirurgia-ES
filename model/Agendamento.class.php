@@ -1,11 +1,9 @@
 <?php
-function MyAutoload($className) {
-    $extension = spl_autoload_extensions();
-    require_once (__DIR__ . '/' . $className . $extension);
 
-    spl_autoload_extensions('.class.php');
-    spl_autoload_register('MyAutoload');
-}
+require_once 'model/connection.class.php';
+require_once 'model/Cirurgia.class.php';
+require_once 'model/Medico.class.php';
+require_once 'model/Paciente.class.php';
 
 class Agendamento {
     private $data;
@@ -119,7 +117,7 @@ class Agendamento {
         if(!$conn) {
             $msg = "Problema na conexão!";
         } else {
-            $sql = "INSERT INTO agendamento (id_cirurgia, id_medico, id_paciente, observacao, previsao_horas) VALUES ('".$this->cirurgia->getId()."', '".$this->medico->getId()."', '".$this->paciente->getId()."', '".$this->descricao."', '".$this->previsaoHoras."')";
+            $sql = "INSERT INTO agendamento (id_cirurgia, id_medico, id_paciente, observacao, previsao_horas) VALUES (".$this->cirurgia->getId().", ".$this->medico->getId().", ".$this->paciente->getId().", '".$this->descricao."', '".$this->previsaoHoras."')";
             if(mysqli_query($conn, $sql)) {
                 $msg = 'Cirurgia agendada com sucesso';
             } else {

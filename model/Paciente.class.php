@@ -1,5 +1,7 @@
 <?php
 
+require_once 'model/connection.class.php';
+
 class Paciente {
 
     private $id;
@@ -50,14 +52,17 @@ class Paciente {
 
     public function buscaPorNome($nome) {
         $conn = Connection::getInstance();
-
+        
         if(!$conn) {
             $msg = "Problema na conexão!";
         } else {
             $sql = "SELECT * FROM paciente WHERE paciente.nome LIKE '".$nome."%'";
             if($res = mysqli_query($conn, $sql)) {
-                $row = mysqli_fetch_row($res);
-                $objeto = new Paciente($row['id'], $row['nome'], $row['cpf'], $row['nascimento'], $row['sexo'], $row['telefone'], $row['convenio']);
+                if(mysqli_num_rows($res) > 0) {
+                    while ($row = mysqli_fetch_array($res)) {
+                        $objeto = new Paciente($row['id'], $row['nome'], $row['cpf'], $row['nascimento'], $row['sexo'], $row['telefone'], $row['convenio']);
+                    }
+                }
                 return $objeto;
             } else {
                 $msg = $sql;
