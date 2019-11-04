@@ -1,0 +1,46 @@
+<html>
+
+<head>
+    <title>RESERVA DE AGENDA CIRÚRGICA</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css" crossorigin="anonymous">
+
+    <!-- Required meta tags-->
+    <meta charset="utf-8">
+</head>
+
+<body>
+
+    <script type="text/javascript">
+        console.log('This is times easier!'');
+        $(document).ready(function(){
+            $("input[name='nomePaciente']".blur(function() {
+                var $cpf = $("input[name='cpf']");
+
+                $.getJSON('C:/wamp64/www/cirurgia-ES/view/function.php', {
+                    nomePaciente: $ (this).val()
+                },function(json){
+                    $cpf.val(json.cpf);
+                });
+            }));
+        });
+    </script>
+
+    <form method="POST">
+        <label>Nomes</label>
+        <input class="form-control" type="text" name="nomePaciente" placeholder="s">
+        <label>CPF</label>
+        <input class="form-control" type="text" name="cpf" placeholder="77">
+
+        <input type="submit" value="Editar">
+    </form>
+
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="./node_modules/jquery/dist/jquery.slim.min.js"></script>
+    <script src="./node_modules/popper.js/dist/popper.min.js"></script>
+    <script src="./node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+
+
+
+</body>
+</html>

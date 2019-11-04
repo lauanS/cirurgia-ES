@@ -1,6 +1,6 @@
 <?php
 
-require_once 'model/connection.class.php';
+require_once 'C:/wamp64/www/cirurgia-ES/model/connection.class.php';
 
 class Paciente {
 
@@ -52,7 +52,7 @@ class Paciente {
 
     public function buscaPorNome($nome) {
         $conn = Connection::getInstance();
-        
+
         if(!$conn) {
             $msg = "Problema na conexão!";
         } else {
@@ -89,7 +89,7 @@ class Paciente {
         }
     }
 
-    public function buscaPorId($Id){
+    public function buscaPorId($id){
         $conn = Connection::getInstance();
 
         if(!$conn) {

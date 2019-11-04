@@ -1,9 +1,9 @@
 <?php
 
-require_once 'model/connection.class.php';
-require_once 'model/Cirurgia.class.php';
-require_once 'model/Medico.class.php';
-require_once 'model/Paciente.class.php';
+require_once 'C:/wamp64/www/cirurgia-ES/model/connection.class.php';
+require_once 'C:/wamp64/www/cirurgia-ES/model/Cirurgia.class.php';
+require_once 'C:/wamp64/www/cirurgia-ES/model/Medico.class.php';
+require_once 'C:/wamp64/www/cirurgia-ES/model/Paciente.class.php';
 
 class Agendamento {
     private $dataInicio;
@@ -53,7 +53,7 @@ class Agendamento {
     public function setDataInicio($dataInicio){
         $this->dataInicio = $dataInicio;
     }
-    
+
     public function getDataFim(){
         return $this->dataFim;
     }
@@ -93,17 +93,17 @@ class Agendamento {
             }
         }
     }
-    
+
     public function validaData() {
         $conn = Connection::getInstance();
 
-        if(!conn){
+        if(!$conn){
             $msg = 'Problemas de conexão';
         } else {
-            $sql = "SELECT * FROM agendamento WHERE agendamento.id_medico = ".$this->medico->getId()." AND agendamento.data_inicio BETWEEN '".$this->dataInicio()."' AND '".$this->dataFim()."' OR agendamento.data_fim BETWEEN '".$this->dataInicio()."' AND '".$this->dataFim()."'";
-            
+            $sql = "SELECT * FROM agendamento WHERE agendamento.id_medico = ".$this->medico->getId()." AND agendamento.data_inicio BETWEEN '".$this->getDataInicio()."' AND '".$this->getDataFim()."' OR agendamento.data_fim BETWEEN '".$this->getDataInicio()."' AND '".$this->getDataFim()."'";
+
             $result = array();
-            $res = mysqli_query($conn, $sql); 
+            $res = mysqli_query($conn, $sql);
             if(mysqli_num_rows($res) > 0) {
                 return false;
             } else {

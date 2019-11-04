@@ -1,9 +1,9 @@
 <?php
 
-    require_once 'model/Cirurgia.class.php';
-    require_once 'model/Medico.class.php';
-    require_once 'model/Paciente.class.php';
-    require_once 'model/Agendamento.class.php';
+    require_once 'C:/wamp64/www/cirurgia-ES/model/Paciente.class.php';
+    require_once 'C:/wamp64/www/cirurgia-ES/model/Medico.class.php';
+    require_once 'C:/wamp64/www/cirurgia-ES/model/Cirurgia.class.php';
+    require_once 'C:/wamp64/www/cirurgia-ES/model/Agendamento.class.php';
 
     class AgendamentoController{
         // Variaveis
@@ -20,10 +20,7 @@
 
         public function indexAction(){
             require_once 'view/viewAgendamento.php';
-        }
-
-        public function testAction(){
-            $this->view->setRenderLevel(View::LEVEL_NO_RENDER);
+            //require_once 'view/view.php';
         }
 
         public function buscarTodosPacientes(){
@@ -92,17 +89,28 @@
             $p = new Paciente('', '', '', '', '', '', '');
             $paciente = $p->buscaPorNome('Georgin');
 
-            $data = '2019-10-12 00:00:00';
-            $observacao = 'Paciente com alergia a anestesia';
+            //$data = '2019-10-12 00:00:00';
+            //$observacao = 'Paciente com alergia a anestesia';
             $previsaoHoras = '05:30:00';
-            // $data = $_POST["data"];
-            // $observacao = $_POST["data"];
-            // $previsaoHoras = $_POST["data"];
+            $data = $_POST["dataCirurgia"];
+            $descricao = $_POST["descricao"];
+            $dataFim = "1970-01-01 00:00:01";
 
-            $agendamento = new Agendamento($medico, $paciente, $cirurgia, $data, $observacao, $previsaoHoras);
-            
-            if($agendamento->validaData())
+            $agendamento = new Agendamento($medico, $paciente, $cirurgia, $data, $dataFim, $descricao, $previsaoHoras);
+            //if($agendamento->validaData())
                 $agendamento->insere();
         }
     }
+
+if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['method'])) {
+
+	$method = $_POST['method'];
+	if(method_exists('AgendamentoController', $method)) {
+		$agendamento = new AgendamentoController();
+		$agendamento->$method($_POST);
+	} else {
+		echo 'Metodo incorreto';
+	}
+}
+
 ?>

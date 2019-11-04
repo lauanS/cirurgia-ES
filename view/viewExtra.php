@@ -8,10 +8,8 @@
     <script>
             $(function () {
                 var nomes = [
-                    "Test1",
-                    "Test2",
-                    "Test3",
-                    "Test4"
+                    "Cateto",
+                    "Remoção da Órnea"
                 ];
                 $("#name").autocomplete({
                     source: nomes
