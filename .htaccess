@@ -1,5 +1,5 @@
 RewriteEngine On
-Options All -Indexes # Impede que seja acessado nosso index of
+Options All -Indexes
 
 # ROUTER URL Rewrite
 RewriteCond %{SCRIPT_FILENAME} !-f
