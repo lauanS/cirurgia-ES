@@ -1,0 +1,24 @@
+{
+  "name": "lauanS/cirurgia-ES",
+  "description": "Trabalho de Engenharia de Software",
+  "minimum-stability": "stable",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "lauanS",
+      "email": "lauan.s.souza@gmail.com"
+    }
+  ],
+  "config": {
+    "vendor-dir": "vendor"
+  },
+  "autoload": {
+    "psr-4": {
+      "Source:\\": "source/"
+    },
+    "files": ["source/Config.php"]
+  },
+  "require": {
+    "coffeecode/router": "1.0.*"
+  }
+}
