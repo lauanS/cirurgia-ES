@@ -14,9 +14,11 @@
   },
   "autoload": {
     "psr-4": {
-      "Source:\\": "source/"
+      "Source\\": "source/"
     },
-    "files": ["source/Config.php"]
+    "files": [
+      "source/Config.php"
+    ]
   },
   "require": {
     "coffeecode/router": "1.0.*"
