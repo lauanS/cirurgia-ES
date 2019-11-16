@@ -2,6 +2,7 @@
 
 <h1><?= $pageTitle ?></h1>
 <form action="<?= url("agendamento"); ?>" method="POST">
+    <br><p><?= $msg ?></p><br>
     <label>Inicio da Cirurgia: </label> <br>
     <input type="date" name="dataInicio" />
     <input type="time" name="horaInicio" />

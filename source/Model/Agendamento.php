@@ -15,7 +15,8 @@ class Agendamento
     private $paciente;
     private $medico;
 
-    public function __construct($medico, $paciente, $cirurgia, $dataInicio, $dataFim, $descricao, $previsaoHoras) {
+    public function __construct($medico = NULL, $paciente = NULL, $cirurgia = NULL, $dataInicio = NULL,
+                                $dataFim = NULL, $descricao = NULL, $previsaoHoras = NULL) {
         $this->medico = $medico;
         $this->paciente = $paciente;
         $this->cirurgia = $cirurgia;
@@ -36,6 +37,7 @@ class Agendamento
     public function getPaciente(){
         return $this->paciente;
     }
+
     public function setPaciente($paciente){
         $this->paciente = $paciente;
     }
@@ -97,7 +99,7 @@ class Agendamento
     public function validaData() {
         $conn = Connection::getInstance();
 
-        if(!conn){
+        if(!$conn){
             $msg = 'Problemas de conexão';
         } else {
             $sql = "SELECT * FROM agendamento WHERE agendamento.id_medico = ".$this->medico->getId()." AND agendamento.data_inicio BETWEEN '".$this->dataInicio()."' AND '".$this->dataFim()."' OR agendamento.data_fim BETWEEN '".$this->dataInicio()."' AND '".$this->dataFim()."'";

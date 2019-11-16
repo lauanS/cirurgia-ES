@@ -6,6 +6,7 @@ namespace Source\Controller;
 use Source\Model\Medico;
 use Source\Model\Paciente;
 use Source\Model\Cirurgia;
+use Source\Model\Agendamento;
 
 /* Render das views */
 use League\Plates\Engine;
@@ -39,7 +40,8 @@ class AgendamentoController
     {
         echo $this->view->render("viewAgendamento", [
             "title" => "Home | " . URL_BASE,
-            "pageTitle"=> "Agendamento"
+            "pageTitle"=> "Agendamento",
+            "msg" => ""
         ]);
     }
 
@@ -51,7 +53,6 @@ class AgendamentoController
         $nomeMedico = trim($_POST['nomeMedico']);
 
         $nomeCirurgia = trim($_POST['cirurgia']);
-        $obs = trim($_POST['obsCirurgia']);
 
         $dataInicio = $_POST['dataInicio'];
         $dataFim = $_POST['dataFim'];
@@ -59,26 +60,34 @@ class AgendamentoController
         $horaInicio = $_POST['horaInicio'];
         $horaFim = $_POST['horaFim'];
 
+        $obs = trim($_POST['obsCirurgia']);
+
+
         if (!(empty($nomePaciente) or empty($nomeMedico) or empty($nomeCirurgia)))
         {
             $paciente = $this->paciente->buscaPorNome($nomePaciente);
             $medico = $this->medico->buscaPorNome($nomeMedico);
             $cirurgia = $this->cirurgia->buscaPorNome($nomeCirurgia);
-
-
-            echo "<p>Paciente</p>";
-            var_dump($paciente);
-            echo "<p>Medico</p>";
-            var_dump($medico);
-            echo "<p>cirurgia</p>";
-            var_dump($cirurgia);
         }
 
         $dateTimeInicio = convertDateTime($dataInicio, $horaInicio);
         $dateTimeFim = convertDateTime($dataFim, $horaFim);
 
-        echo "<p>dateTime</p>";
-        var_dump($dateTimeInicio);
+        $this->agendamento = new Agendamento($medico, $paciente, $cirurgia, $dateTimeInicio, $dateTimeFim, $obs);
+
+        // todo: descomentar quando o stein terminar a função
+//        if($this->agendamento->validaData()){
+//         $msg = $this->agendamento->insere();
+//        }
+//        else{
+//            $msg = "Data inválida";
+//        }
+
+        echo $this->view->render("viewAgendamento", [
+            "title" => "Home | " . URL_BASE,
+            "pageTitle"=> "Agendamento",
+            "msg" => $msg
+        ]);
         // echo "Agendado!".$nomePaciente;
     }
 
