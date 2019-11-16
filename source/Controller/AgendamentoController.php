@@ -81,14 +81,12 @@ class AgendamentoController
 
         $this->agendamento = new Agendamento($medico, $paciente, $cirurgia, $dateTimeInicio, $dateTimeFim, $obs);
 
-        $msg = $this->agendamento->insere();
-        // todo: descomentar quando o stein terminar a função
-//        if($this->agendamento->validaData()){
-//            $msg = $this->agendamento->insere();
-//        }
-//        else{
-//            $msg = "Data inválida";
-//        }
+        if($this->agendamento->validaData()){
+            $msg = $this->agendamento->insere();
+        }
+        else{
+            $msg = "Data inválida";
+        }
 
         echo $this->view->render("viewAgendamento", [
             "title" => "Home | " . URL_BASE,

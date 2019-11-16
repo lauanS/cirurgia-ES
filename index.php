@@ -26,6 +26,7 @@ $router->post("/", "AgendamentoController:agendar");
  */
 $router->group("relatorio");
 $router->get("/",  "RelatorioController:relatorio" );
+
 /*
  * Erros
  */

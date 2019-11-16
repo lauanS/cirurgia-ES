@@ -112,7 +112,7 @@ class Agendamento
         if(!$conn){
             $msg = 'Problemas de conexão';
         } else {
-            $sql = "SELECT * FROM agendamento WHERE agendamento.id_medico = ".$this->medico->getId()." AND agendamento.data_inicio BETWEEN '".$this->dataInicio()."' AND '".$this->dataFim()."' OR agendamento.data_fim BETWEEN '".$this->dataInicio()."' AND '".$this->dataFim()."'";
+            $sql = "SELECT * FROM agendamento WHERE agendamento.id_medico = ".$this->medico->getId()." AND agendamento.data_inicio BETWEEN '".$this->getDataInicio()."' AND '".$this->getDataFim()."' OR agendamento.data_fim BETWEEN '".$this->getDataInicio()."' AND '".$this->getDataFim()."'";
 
             $result = array();
             $res = mysqli_query($conn, $sql);
