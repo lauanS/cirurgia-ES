@@ -53,20 +53,20 @@ class AgendamentoController
 
     public function agendar($data): void
     {
-        $nomePaciente = trim($_POST['nomePaciente']);
-        $convenio = trim($_POST['convenio']);
+        $nomePaciente = trim($data['nomePaciente']);
+        $convenio = trim($data['convenio']);
 
-        $nomeMedico = trim($_POST['nomeMedico']);
+        $nomeMedico = trim($data['nomeMedico']);
 
-        $nomeCirurgia = trim($_POST['cirurgia']);
+        $nomeCirurgia = trim($data['cirurgia']);
 
-        $dataInicio = $_POST['dataInicio'];
-        $dataFim = $_POST['dataFim'];
+        $dataInicio = $data['dataInicio'];
+        $dataFim = $data['dataFim'];
 
-        $horaInicio = $_POST['horaInicio'];
-        $horaFim = $_POST['horaFim'];
+        $horaInicio = $data['horaInicio'];
+        $horaFim = $data['horaFim'];
 
-        $obs = trim($_POST['obsCirurgia']);
+        $obs = trim($data['obsCirurgia']);
 
 
         if (!(empty($nomePaciente) or empty($nomeMedico) or empty($nomeCirurgia)))
