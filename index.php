@@ -12,12 +12,13 @@ $router->namespace("Source\Controller");
 $router->group(null);
 $router->get("/",  "AgendamentoController:home" );
 
+
 /*
  * agendamento
  */
 $router->group("agendamento");
 $router->get("/",  "AgendamentoController:agendamento" );
-
+$router->post("/", "AgendamentoController:agendar");
 
 /*
  * Erros
