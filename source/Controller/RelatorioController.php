@@ -28,31 +28,34 @@ class RelatorioController
         $this->agendamento = new Agendamento();
     }
 
-    public function PacientePorCirurgia($data = NULL, $cirurgia = NULL)
+
+    public function relatorio($data)
     {
-        // Se um dos campos estiver vazios
-        // exibe o relatorio sem filtro
-        if(!(empty(data) and empty($cirurgia))) {
-            return $this->relatorio($data, $cirurgia);
+        var_dump($data);
+        if (array_key_exists("dataInicio", $data) and array_key_exists("dataFim", $data) and
+            array_key_exists("horaInicio", $data) and array_key_exists("horaFim", $data)){
+            $dataInicio = convertDateTime($data['dataInicio'], $data['horaInicio']);
+            $dataFim  = convertDateTime($data['dataFim'], $data['horaFim']);
+        }
+        else{
+            $dataInicio = NULL;
+            $dataFim  = NULL;
+        }
+
+        if(empty($dataInicio) and empty($dataFim)) {
+            // $relatorio = $this->agendamento->relatorio();
+            echo "Rel 1";
         }
         else {
-            return $this->relatorio();
+            // $relatorio = $this->agendamento->relatorioData($dataInicio, $dataFim);
+            echo "Rel 2";
         }
 
-
-    }
-
-    private function relatorio()
-    {
-        echo $this->view->render("viewAgendamento", [
-            "title" => "Home | " . URL_BASE,
-            "pageTitle" => "Agendamento",
-            "relatorio" => ["Apendice" => 30, "Pancreas" => 1, "Cateto" => 5]
+        echo $this->view->render("viewRelatorio", [
+            "title" => "Relatorio | " . URL_BASE,
+            "pageTitle" => "Relatorio",
+            // "relatorio" => $relatorio
+            "relatorio" => ["Cateto" => [2, "Hudson"], "Apendice" => [6, "Maicon"], "Pancreas" => [3, "Hudson"]]
         ]);
-    }
-
-    private function relatorioDataCirurgia($data, $cirurgia)
-    {
-
     }
 }
