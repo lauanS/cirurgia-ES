@@ -14,8 +14,8 @@
             echo $v->section("sidebar");
         else:
             ?>
-            <a title="" href="<?= url("source/View/home")?>">Home</a>
-            <a title="" href="<?= url("source/View/viewAgendamento") ?>">Agendamento</a>
+            <a title="" href="<?= url("/")?>">Home</a>
+            <a title="" href="<?= url("/agendamento") ?>">Agendamento</a>
         <?php
         endif;
         ?>
