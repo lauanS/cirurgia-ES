@@ -24,6 +24,7 @@
   "require": {
     "coffeecode/router": "1.0.*",
     "league/plates": "4.0.0-alpha",
-    "twbs/bootstrap": "4.3.1"
+    "twbs/bootstrap": "4.3.1",
+    "phpunit/phpunit": "^8"
   }
 }
