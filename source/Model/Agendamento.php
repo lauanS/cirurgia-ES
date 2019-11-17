@@ -77,6 +77,46 @@ class Agendamento
         $this->previsaoHoras = $previsaoHoras;
     }
 
+    public function relatorioData($dataInicio, $dataFim){
+        $conn = Connection::getInstance();
+
+        if($dataInicio >= $dataFim )
+            return "Datas inválidas";
+
+        if(!$conn){
+            $msg = 'Problemas de conexão';
+        }
+        else {
+            $sql =
+                "SELECT cirurgia.nome as cirurgia, ".
+                "       medico.nome as medico, ".
+                "       COUNT(agendamento.id_cirurgia) as pacientes ".
+                "FROM agendamento ".
+                "INNER JOIN cirurgia ON ".
+                "       agendamento.id_cirurgia = cirurgia.id ".
+                "INNER JOIN medico ON ".
+                "       agendamento.id_medico = medico.id ".
+                "WHERE ".
+                "agendamento.data_inicio >= '".$dataInicio."' ".
+                "AND agendamento.data_inicio <= '".$dataFim."' ".
+                "GROUP BY agendamento.id_cirurgia ".
+                "ORDER BY cirurgia.nome";
+            $result = array();
+            if($res = mysqli_query($conn, $sql)) {
+                if(mysqli_num_rows($res) > 0) {
+                    while ($row = mysqli_fetch_array($res)) {
+                        $objeto = new RelatorioDTO($row['cirurgia'], $row['medico'], $row['pacientes']);
+                        array_push($result, $objeto);
+                    }
+                }
+                return $result;
+            } else {
+                $msg = $sql;
+            }
+            return $msg;
+        }
+    }
+
     public function relatorio(){
         $conn = Connection::getInstance();
 
