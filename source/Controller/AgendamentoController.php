@@ -74,26 +74,31 @@ class AgendamentoController
             $paciente = $this->paciente->buscaPorNome($nomePaciente)[0];
             $medico = $this->medico->buscaPorNome($nomeMedico)[0];
             $cirurgia = $this->cirurgia->buscaPorNome($nomeCirurgia);
+
+            $dateTimeInicio = convertDateTime($dataInicio, $horaInicio);
+            $dateTimeFim = convertDateTime($dataFim, $horaFim);
+
+            $this->agendamento = new Agendamento($medico, $paciente, $cirurgia, $dateTimeInicio, $dateTimeFim, $obs);
+
+            if($this->agendamento->validaData()){
+                $msg = $this->agendamento->insere();
+            }
+            else{
+                $msg = "Data inválida";
+            }
+        }
+        else
+        {
+            $msg = htmlspecialchars("Preencha todos os campos obrigatórios");
         }
 
-        $dateTimeInicio = convertDateTime($dataInicio, $horaInicio);
-        $dateTimeFim = convertDateTime($dataFim, $horaFim);
 
-        $this->agendamento = new Agendamento($medico, $paciente, $cirurgia, $dateTimeInicio, $dateTimeFim, $obs);
-
-        if($this->agendamento->validaData()){
-            $msg = $this->agendamento->insere();
-        }
-        else{
-            $msg = "Data inválida";
-        }
 
         echo $this->view->render("viewAgendamento", [
             "title" => "Home | " . URL_BASE,
             "pageTitle"=> "Agendamento",
             "msg" => $msg
         ]);
-        // echo "Agendado!".$nomePaciente;
     }
 
 
