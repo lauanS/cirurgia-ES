@@ -6,15 +6,16 @@ use CoffeeCode\Router\Router;
 
 $router = new Router(URL_BASE);
 $router->namespace("Source\Controller");
+
 /*
- * home
+ * Home
  */
 $router->group(null);
 $router->get("/",  "WebController:home" );
 
 
 /*
- * agendamento
+ * Agendamento
  */
 $router->group("agendamento");
 $router->get("/",  "AgendamentoController:agendamento" );
@@ -22,11 +23,18 @@ $router->post("/", "AgendamentoController:agendar");
 
 
 /*
- * relatorio
+ * Relatorio
  */
 $router->group("relatorio");
 $router->get("/",  "RelatorioController:relatorio" );
 $router->post("/",  "RelatorioController:relatorio" );
+
+/*
+ * Visualizar
+ */
+$router->group("visualizar");
+$router->get("/", "WebController:visualizar");
+$router->post("/", "WebController:visualizar");
 
 /*
  * Erros
