@@ -109,6 +109,9 @@ class Agendamento
     public function validaData() {
         $conn = Connection::getInstance();
 
+        if($this->getDataInicio() >= $this->getDataFim())
+            return false;
+
         if(!$conn){
             $msg = 'Problemas de conexão';
         } else {
