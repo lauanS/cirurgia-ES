@@ -83,7 +83,8 @@ class Paciente
             $sql = "SELECT * FROM paciente WHERE paciente.cpf LIKE '".$cpf."%'";
             if($res = mysqli_query($conn, $sql)) {
                 $row = mysqli_fetch_row($res);
-                $objeto = new Paciente($row['id'], $row['nome'], $row['cpf'], $row['nascimento'], $row['sexo'], $row['telefone'], $row['convenio']);
+                var_dump($row);
+                $objeto = new Paciente($row[0], $row[1], $row[2], $row[3], $row[4], $row[5], $row[6]);
                 return $objeto;
             } else {
                 $msg = $sql;
