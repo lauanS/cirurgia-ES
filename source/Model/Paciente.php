@@ -60,13 +60,15 @@ class Paciente
             $msg = "Problema na conexão!";
         } else {
             $sql = "SELECT * FROM paciente WHERE paciente.nome LIKE '".$nome."%'";
+            $result = array();
             if($res = mysqli_query($conn, $sql)) {
                 if(mysqli_num_rows($res) > 0) {
                     while ($row = mysqli_fetch_array($res)) {
                         $objeto = new Paciente($row['id'], $row['nome'], $row['cpf'], $row['nascimento'], $row['sexo'], $row['telefone'], $row['convenio']);
+                        array_push($result, $objeto);
                     }
                 }
-                return $objeto;
+                return $result;
             } else {
                 $msg = $sql;
             }
