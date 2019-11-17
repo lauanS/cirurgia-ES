@@ -178,7 +178,7 @@ class Agendamento
         if(!$conn) {
             $msg = "Problema na conexão!";
         } else {
-            $sql = "SELECT * FROM agendamento ORDER BY agendamento.data_incio";
+            $sql = "SELECT * FROM agendamento ORDER BY agendamento.data_inicio";
             $result = array();
             if($res = mysqli_query($conn, $sql)) {
                 if(mysqli_num_rows($res) > 0) {
@@ -186,7 +186,7 @@ class Agendamento
                         $medico = new Medico('', '', '', '');
                         $paciente = new Paciente('', '', '', '', '', '', '');
                         $cirurgia = new Cirurgia('', '', '');
-                        $objeto = new Agendamento($medico, $paciente, $cirurgia, $row['data_inicio'], $row['data_fim'], $row['descricao']);
+                        $objeto = new Agendamento($medico, $paciente, $cirurgia, $row['data_inicio'], $row['data_fim'], $row['observacao']);
                         array_push($result, $objeto);
                     }
                 }
@@ -215,7 +215,7 @@ class Agendamento
                         $medico = new Medico('', '', '', '');
                         $paciente = new Paciente('', '', '', '', '', '', '');
                         $cirurgia = new Cirurgia('', '', '');
-                        $objeto = new Agendamento($medico, $paciente, $cirurgia, $row['data_inicio'], $row['data_fim'], $row['descricao']);
+                        $objeto = new Agendamento($medico, $paciente, $cirurgia, $row['data_inicio'], $row['data_fim'], $row['observacao']);
                         array_push($result, $objeto);
                     }
                 }
