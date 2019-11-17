@@ -29,9 +29,5 @@
 </section>
 
 <?php $v->start("js"); ?>
-<script>
-    $(function () {
-        alert("a");
-    });
-</script>
+
 <?php $v->end("js"); ?>

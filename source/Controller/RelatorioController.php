@@ -31,23 +31,26 @@ class RelatorioController
 
     public function relatorio($data)
     {
-        var_dump($data);
+        $dataInicio = NULL;
+        $dataFim  = NULL;
+
+        // Verifica se existe os campos de data
         if (array_key_exists("dataInicio", $data) and array_key_exists("dataFim", $data) and
             array_key_exists("horaInicio", $data) and array_key_exists("horaFim", $data)){
-            $dataInicio = convertDateTime($data['dataInicio'], $data['horaInicio']);
-            $dataFim  = convertDateTime($data['dataFim'], $data['horaFim']);
-        }
-        else{
-            $dataInicio = NULL;
-            $dataFim  = NULL;
+            // Verifica se eles nao estao vazios
+            if (!(empty($data['dataInicio']) and empty($data['horaInicio'])
+                and empty($data['dataFim']) and empty($data['horaFim'])))
+            {
+                $dataInicio = convertDateTime($data['dataInicio'], $data['horaInicio']);
+                $dataFim  = convertDateTime($data['dataFim'], $data['horaFim']);
+            }
         }
 
         if(empty($dataInicio) and empty($dataFim)) {
             $relatorio = $this->agendamento->relatorio();
         }
         else {
-            // $relatorio = $this->agendamento->relatorioData($dataInicio, $dataFim);
-            $relatorio = $this->agendamento->relatorio();
+            $relatorio = $this->agendamento->relatorioData($dataInicio, $dataFim);
         }
 
         echo $this->view->render("viewRelatorio", [
