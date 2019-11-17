@@ -178,7 +178,36 @@ class Agendamento
         if(!$conn) {
             $msg = "Problema na conexão!";
         } else {
-            $sql = "SELECT * FROM agendamento ORDER BY agendamento.data";
+            $sql = "SELECT * FROM agendamento ORDER BY agendamento.data_incio";
+            $result = array();
+            if($res = mysqli_query($conn, $sql)) {
+                if(mysqli_num_rows($res) > 0) {
+                    while ($row = mysqli_fetch_array($res)) {
+                        $medico = new Medico('', '', '', '');
+                        $paciente = new Paciente('', '', '', '', '', '', '');
+                        $cirurgia = new Cirurgia('', '', '');
+                        $objeto = new Agendamento($medico, $paciente, $cirurgia, $row['data_inicio'], $row['data_fim'], $row['descricao']);
+                        array_push($result, $objeto);
+                    }
+                }
+                return $result;
+            } else {
+                $msg = $sql;
+            }
+            return $msg;
+        }
+    }
+
+    public function visualizaCirurgia($dataInicio, $dataFim){
+        $conn = Connection::getInstance();
+
+        if($dataInicio >= $dataFim )
+            return "Datas inválidas";
+
+        if(!$conn) {
+            $msg = "Problema na conexão!";
+        } else {
+            $sql = "SELECT * FROM agendamento WHERE agendamento.data_inicio >= '".$dataInicio."' AND agendamento.data_inicio <= '".$dataFim."' ORDER BY agendamento.data_inicio";
             $result = array();
             if($res = mysqli_query($conn, $sql)) {
                 if(mysqli_num_rows($res) > 0) {
