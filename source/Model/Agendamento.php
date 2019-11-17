@@ -77,24 +77,28 @@ class Agendamento
         $this->previsaoHoras = $previsaoHoras;
     }
 
-    public function buscaPorData($data){
+    public function relatorio(){
         $conn = Connection::getInstance();
-        $dataInicial = date_time_set($data, 0, 0);
-        $dataFinal = date_time_set($data, 23, 59, 59);
 
         if(!conn){
             $msg = 'Problemas de conexão';
         }
         else {
-            $sql = "SELECT * FROM agendamento WHERE agendamento.data_inicio >= '".$dataInicial."' AND agendamento.data_fim <= '".$dataFinal."'";
+            $sql =  "SELECT cirurgia.nome as cirurgia, ".
+                    "       medico.nome as medico".
+                    "       COUNT(agendamento.id_cirurgia) as paciente".
+                    "FROM agendamento".
+                    "INNER JOIN cirurgia ON".
+                    "       agendamento.id_cirurgia = cirurgia.id".
+                    "INNER JOIN medico ON".
+                    "       agendamento.id_medico = medico.id".
+                    "GROUP BY agendamento.id_cirurgia".
+                    "ORDER BY cirurgia.nome";
             $result = array();
             if($res = mysqli_query($conn, $sql)) {
                 if(mysqli_num_rows($res) > 0) {
                     while ($row = mysqli_fetch_array($res)) {
-                        $medico = new Medico('', '', '', '');
-                        $paciente = new Paciente('', '', '', '', '', '', '');
-                        $cirurgia = new Cirurgia('', '', '');
-                        $objeto = new Agendamento($medico, $paciente, $cirurgia, $row['data_inicio'], $row['data_fim'], $row['descricao']);
+                        $objeto = new RelatorioDTO($row['cirurgia'], $row['medico'], $row['pacientes']);
                         array_push($result, $objeto);
                     }
                 }
