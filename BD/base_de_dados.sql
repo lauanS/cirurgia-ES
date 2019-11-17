@@ -16,7 +16,7 @@ INSERT INTO `paciente` (`id`, `nome`, `cpf`, `nascimento`, `sexo`, `telefone`, `
 
 INSERT INTO `paciente` (`id`, `nome`, `cpf`, `nascimento`, `sexo`, `telefone`, `convenio`)
     VALUES  (NULL, 'Anderson Luiz Thomas', '45649782415', '1967-06-12', 'M', '15984369914', NULL),
-            (NULL, 'Milena Letícia Emily Freitas', '49675576944', '1968-01-07', 'F', '20999961843', 'Caixa');
+            (NULL, 'Milena Leticia Emily Freitas', '49675576944', '1968-01-07', 'F', '20999961843', 'Caixa');
 
 INSERT INTO `paciente` (`id`, `nome`, `cpf`, `nascimento`, `sexo`, `telefone`, `convenio`)
         VALUES  (NULL, 'Maria de Lurdes Nunes', '56831207057', '1972-09-15', 'F', '83991310393', 'Samaritano '),
