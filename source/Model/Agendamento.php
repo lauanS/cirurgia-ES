@@ -178,7 +178,8 @@ class Agendamento
         if(!$conn) {
             $msg = "Problema na conexão!";
         } else {
-            $sql = "SELECT agendamento.*, medico.nome, cirurgia.nome, paciente.nome ".
+            $sql = "SELECT agendamento.*, ".
+                "medico.nome as nomeMedico, cirurgia.nome  as nomeCirurgia , paciente.nome  as nomePaciente ".
                 "FROM agendamento ".
                 "INNER JOIN medico ON ".
                 "agendamento.id_medico = medico.id ".
@@ -188,13 +189,14 @@ class Agendamento
                 "agendamento.id_paciente = paciente.id ".
                 "ORDER BY agendamento.data_inicio";
             $result = array();
+
             if($res = mysqli_query($conn, $sql)) {
                 if(mysqli_num_rows($res) > 0) {
                     while ($row = mysqli_fetch_array($res)) {
-                        $medico = new Medico('', $row['medico.nome'], '', '');
-                        $paciente = new Paciente('', $row['paciente.nome'], '', '', '', '', '');
-                        $cirurgia = new Cirurgia('', $row['cirurgia.nome'], '');
-                        $objeto = new Agendamento($medico, $paciente, $cirurgia, $row['agendamento.data_inicio'], $row['agendamento.data_fim'], $row['agendamento.observacao']);
+                        $medico = new Medico('', $row['nomeMedico'], '', '');
+                        $paciente = new Paciente('', $row['nomePaciente'], '', '', '', '', '');
+                        $cirurgia = new Cirurgia('', $row['nomeCirurgia'], '');
+                        $objeto = new Agendamento($medico, $paciente, $cirurgia, $row['data_inicio'], $row['data_fim'], $row['observacao']);
                         array_push($result, $objeto);
                     }
                 }
@@ -215,26 +217,27 @@ class Agendamento
         if(!$conn) {
             $msg = "Problema na conexão!";
         } else {
-            $sql = "SELECT agendamento.*, medico.nome, cirurgia.nome, paciente.nome ".
+            $sql = "SELECT agendamento.*, ".
+                "medico.nome as nomeMedico, cirurgia.nome  as nomeCirurgia , paciente.nome  as nomePaciente ".
                 "FROM agendamento ".
                 "INNER JOIN medico ON ".
                 "agendamento.id_medico = medico.id ".
                 "INNER JOIN cirurgia ON ".
                 "agendamento.id_cirurgia = cirurgia.id ".
                 "INNER JOIN paciente ON ".
+                "agendamento.id_paciente = paciente.id ".
                 "WHERE agendamento.data_inicio >= '".$dataInicio."' ".
                 "AND agendamento.data_inicio <= '".$dataFim."' ".
-                "agendamento.id_paciente = paciente.id ".
                 "ORDER BY agendamento.data_inicio";
 
             $result = array();
             if($res = mysqli_query($conn, $sql)) {
                 if(mysqli_num_rows($res) > 0) {
                     while ($row = mysqli_fetch_array($res)) {
-                        $medico = new Medico('', $row['medico.nome'], '', '');
-                        $paciente = new Paciente('', $row['paciente.nome'], '', '', '', '', '');
-                        $cirurgia = new Cirurgia('', $row['cirurgia.nome'], '');
-                        $objeto = new Agendamento($medico, $paciente, $cirurgia, $row['agendamento.data_inicio'], $row['agendamento.data_fim'], $row['agendamento.observacao']);
+                        $medico = new Medico('', $row['nomeMedico'], '', '');
+                        $paciente = new Paciente('', $row['nomePaciente'], '', '', '', '', '');
+                        $cirurgia = new Cirurgia('', $row['nomeCirurgia'], '');
+                        $objeto = new Agendamento($medico, $paciente, $cirurgia, $row['data_inicio'], $row['data_fim'], $row['observacao']);
                         array_push($result, $objeto);
                     }
                 }

@@ -14,23 +14,42 @@
 </form>
 
 <section>
-    <?php
-    if(!empty($agendamentos)):
-        foreach($agendamentos as $agendamento): ?>
-            <article>
-                <h3>--</h3>
-                <p><?= $agendamento->getMedico()->getNome() ?></p>
-                <p><?= $agendamento->getPaciente()->getNome() ?></p>
-                <p><?= $agendamento->getCirurgia()->getNome() ?></p>
-                <p><?= $agendamento->getDataInicio() ?></p>
-                <p><?= $agendamento->getDataFim() ?></p>
-                <p><?= $agendamento->getDescricao() ?></p>
-            </article>
-        <?php endforeach;
-    endif;
-    ?>
+    <div class="col-md-6">
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Medico</th>
+                <th>Paciente</th>
+                <th>Cirurgia</th>
+                <th>Data de Inicio</th>
+                <th>Previsão de Término</th>
+                <th>Observação</th>
+            </tr>
+            </thead>
+            <tbody>
+            <?php
+                if(!empty($agendamentos)):
+                    foreach($agendamentos as $agendamento): ?>
+                        <tr>
+                            <td><?= $agendamento->getMedico()->getNome() ?> </td>
+                            <td><?= $agendamento->getPaciente()->getNome() ?> </td>
+                            <td><?= $agendamento->getCirurgia()->getNome() ?> </td>
+                            <td><?= $agendamento->getDataInicio() ?> </td>
+                            <td><?= $agendamento->getDataFim() ?> </td>
+                            <td><?= $agendamento->getDescricao() ?> </td>
+                        </tr>
+                    <?php endforeach;
+                endif;
+            ?>
+            </tbody>
+        </table>
+    </div>
+
 </section>
+
+
 
 <?php $v->start("js"); ?>
 
 <?php $v->end("js"); ?>
+

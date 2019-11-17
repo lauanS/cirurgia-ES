@@ -12,19 +12,20 @@
     <title><?=$title; ?></title>
 </head>
 <body>
+
     <nav>
         <?php
-            if ($v->section("sidebar")):
-                echo $v->section("sidebar");
-            else:
-                ?>
-                <a title="" href="<?= url("")?>">Home</a>
-                <a title="" href="<?= url("agendamento") ?>">Agendamento</a>
-                <a title="" href="<?= url("relatorio") ?>">Relatorio</a>
-                <a title="" href="<?= url("visualizar") ?>">Visualizar</a>
-            <?php
-            endif;
+        if ($v->section("sidebar")):
+            echo $v->section("sidebar");
+        else:
             ?>
+            <a title="" href="<?= url("")?>">Home</a>
+            <a title="" href="<?= url("agendamento") ?>">Agendamento</a>
+            <a title="" href="<?= url("relatorio") ?>">Relatorio</a>
+            <a title="" href="<?= url("visualizar") ?>">Visualizar</a>
+        <?php
+        endif;
+        ?>
 
     </nav>
 
