@@ -71,8 +71,8 @@ class AgendamentoController
 
         if (!(empty($nomePaciente) or empty($nomeMedico) or empty($nomeCirurgia)))
         {
-            $paciente = $this->paciente->buscaPorNome($nomePaciente);
-            $medico = $this->medico->buscaPorNome($nomeMedico);
+            $paciente = $this->paciente->buscaPorNome($nomePaciente)[0];
+            $medico = $this->medico->buscaPorNome($nomeMedico)[0];
             $cirurgia = $this->cirurgia->buscaPorNome($nomeCirurgia);
         }
 
