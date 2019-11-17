@@ -72,7 +72,7 @@ class Medico
                         array_push($result, $objeto);
                     }
                 }
-                return $objeto;
+                return $result;
             } else {
                 $msg = $sql;
             }
