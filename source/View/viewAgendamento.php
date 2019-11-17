@@ -47,6 +47,15 @@
         </div>
             -->
 
+        <div class="form-group">
+            <label>Nome da Cirurgia:</label>
+            <div class="container">
+                <div class="row">
+                    <input type="text" class="form-control destaque" placeholder="Nome da Cirurgia" name="nomeCirurgia">
+                </div>
+            </div>
+        </div>
+
         <div class="form-row">
             <div class="col">
                 <label>Inicío da Cirurgia:</label><br>
