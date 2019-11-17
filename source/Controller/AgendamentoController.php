@@ -98,10 +98,6 @@ class AgendamentoController
 
 
 
-    public function errou($data): void
-    {
-        echo "<h1>Ops, Erros {$data["errcode"]}</h1>";
-        var_dump($data);
-    }
+
 
 }

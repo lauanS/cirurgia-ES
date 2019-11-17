@@ -80,19 +80,19 @@ class Agendamento
     public function relatorio(){
         $conn = Connection::getInstance();
 
-        if(!conn){
+        if(!$conn){
             $msg = 'Problemas de conexão';
         }
         else {
             $sql =  "SELECT cirurgia.nome as cirurgia, ".
-                    "       medico.nome as medico".
-                    "       COUNT(agendamento.id_cirurgia) as paciente".
-                    "FROM agendamento".
-                    "INNER JOIN cirurgia ON".
-                    "       agendamento.id_cirurgia = cirurgia.id".
-                    "INNER JOIN medico ON".
-                    "       agendamento.id_medico = medico.id".
-                    "GROUP BY agendamento.id_cirurgia".
+                    "       medico.nome as medico, ".
+                    "       COUNT(agendamento.id_cirurgia) as pacientes ".
+                    "FROM agendamento ".
+                    "INNER JOIN cirurgia ON ".
+                    "       agendamento.id_cirurgia = cirurgia.id ".
+                    "INNER JOIN medico ON ".
+                    "       agendamento.id_medico = medico.id ".
+                    "GROUP BY agendamento.id_cirurgia ".
                     "ORDER BY cirurgia.nome";
             $result = array();
             if($res = mysqli_query($conn, $sql)) {

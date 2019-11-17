@@ -43,19 +43,18 @@ class RelatorioController
         }
 
         if(empty($dataInicio) and empty($dataFim)) {
-            // $relatorio = $this->agendamento->relatorio();
-            echo "Rel 1";
+            $relatorio = $this->agendamento->relatorio();
         }
         else {
             // $relatorio = $this->agendamento->relatorioData($dataInicio, $dataFim);
-            echo "Rel 2";
+            $relatorio = $this->agendamento->relatorio();
         }
 
         echo $this->view->render("viewRelatorio", [
             "title" => "Relatorio | " . URL_BASE,
             "pageTitle" => "Relatorio",
-            // "relatorio" => $relatorio
-            "relatorio" => ["Cateto" => [2, "Hudson"], "Apendice" => [6, "Maicon"], "Pancreas" => [3, "Hudson"]]
+            "relatorio" => $relatorio
+            //"relatorio" => ["Cateto" => [2, "Hudson"], "Apendice" => [6, "Maicon"], "Pancreas" => [3, "Hudson"]]
         ]);
     }
 }

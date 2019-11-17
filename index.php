@@ -10,7 +10,7 @@ $router->namespace("Source\Controller");
  * home
  */
 $router->group(null);
-$router->get("/",  "AgendamentoController:home" );
+$router->get("/",  "WebController:home" );
 
 
 /*
@@ -32,10 +32,7 @@ $router->post("/",  "RelatorioController:relatorio" );
  * Erros
  */
 $router->group("ops");
-$router->get("/{errcode}", function($data) {
-    echo "<h1>Ops, Erros {$data["errcode"]}</h1>";
-    var_dump($data);
-});
+$router->get("/{errcode}", "WebController:erro");
 
 
 
