@@ -32,7 +32,6 @@ class PacienteTest extends TestCase
         $sql = "SELECT * FROM paciente WHERE paciente.cpf LIKE '".$cpfInvalido."%'";
         $this->assertEquals($sql, $paciente->buscaPorCpf($cpfInvalido));
     }
-
     public function testBuscaPorNomeUnico()
     {
         $nome = 'Maria Ross';
@@ -116,5 +115,7 @@ class PacienteTest extends TestCase
 
         $this->assertEquals($esperado, $nomesEncontrados);
     }
+
+
 
 }

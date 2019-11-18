@@ -33,7 +33,7 @@ class RelatorioController
     {
         $dataInicio = NULL;
         $dataFim  = NULL;
-
+        $msg = '';
         // Verifica se existe os campos de data
         if (array_key_exists("dataInicio", $data) and array_key_exists("dataFim", $data) and
             array_key_exists("horaInicio", $data) and array_key_exists("horaFim", $data)){
@@ -47,16 +47,24 @@ class RelatorioController
         }
 
         if(empty($dataInicio) and empty($dataFim)) {
+
             $relatorio = $this->agendamento->relatorio();
         }
         else {
             $relatorio = $this->agendamento->relatorioData($dataInicio, $dataFim);
+            if (is_string($relatorio))
+            {
+                $msg = $relatorio;
+                $relatorio = array();
+                var_dump($relatorio);
+            }
         }
 
         echo $this->view->render("viewRelatorio", [
             "title" => "Relatorio | " . URL_BASE,
             "pageTitle" => "Relatorio",
-            "relatorio" => $relatorio
+            "relatorio" => $relatorio,
+            "msg" => $msg
             //"relatorio" => ["Cateto" => [2, "Hudson"], "Apendice" => [6, "Maicon"], "Pancreas" => [3, "Hudson"]]
         ]);
     }
