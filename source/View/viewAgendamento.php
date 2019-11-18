@@ -28,7 +28,7 @@
             <label>Nome da Cirurgia:</label>
             <div class="container">
                 <div class="row">
-                    <input type="text" class="form-control destaque" placeholder="Nome da Cirurgia" name="cirurgia">
+                    <input type="text" id="cirurgia" class="form-control destaque" placeholder="Nome da Cirurgia" name="cirurgia">
                 </div>
             </div>
         </div>
@@ -74,7 +74,7 @@
             <label>Nome do paciente:</label>
             <div class="container">
                 <div class="row">
-                    <input id="tags" type="text" class="form-control destaque" placeholder="Nome do paciente" name="nomePaciente">
+                    <input id="nomePaciente" type="text" class="form-control destaque" placeholder="Nome do paciente" name="nomePaciente">
                 </div>
             </div>
         </div>
@@ -131,7 +131,7 @@
             <label>Nome do Médico:</label>
             <div class="container">
                 <div class="row">
-                    <input type="text" class="form-control destaque" placeholder="Nome do Médico" name="nomeMedico">
+                    <input type="text" id="nomeMedico" class="form-control destaque" placeholder="Nome do Médico" name="nomeMedico">
                 </div>
             </div>
         </div>
@@ -154,7 +154,7 @@
 </div>
 <?php $v->start("js"); ?>
 <script>
-    $("#tags").autocomplete({
+    $("#nomePaciente").autocomplete({
 
         <?php
         foreach ($pacientes as $p) {
@@ -172,13 +172,42 @@
     });
 </script>
 
-    <script type='text/javascript'>
-        $(document).ready(function() {
-            $("input[name='nomePaciente']").blur(function() {
-                var nomePaciente = $("input[name='nomePaciente']");
-                var $cpf = $("input[name='cpf']");
-                var $convenio = $("input[name='convenio']");
-            });
-        });
-    </script>
+<script>
+    $("#nomeMedico").autocomplete({
+
+        <?php
+        foreach ($medicos as $p) {
+            $nomesMedicos[] = '\'' . $p->getNome() . '\'';
+        }
+        $nomeString = implode(",", $nomesMedicos);
+        ?>
+
+        source: [<?= $nomeString; ?>],
+        change: function(event, ui) {
+            if (!ui.item) {
+                this.value = '';
+            }
+        }
+    });
+</script>
+
+<script>
+    $("#cirurgia").autocomplete({
+
+        <?php
+        foreach ($cirurgias as $p) {
+            $nomesCirurgias[] = '\'' . $p->getNome() . '\'';
+        }
+        $nomeString = implode(",", $nomesCirurgias);
+        ?>
+
+        source: [<?= $nomeString; ?>],
+        change: function(event, ui) {
+            if (!ui.item) {
+                this.value = '';
+            }
+        }
+    });
+</script>
+
 <?php $v->end("js"); ?>

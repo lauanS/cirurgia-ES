@@ -46,7 +46,7 @@ class AgendamentoController
             "pageTitle" => "Agendamento",
             "pacientes" => $pacientes,
             "medicos" => $medicos,
-            "cirurgia" => $cirurgias,
+            "cirurgias" => $cirurgias,
             "msg" => ""
         ]);
     }
