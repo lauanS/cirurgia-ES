@@ -44,12 +44,24 @@ class RelatorioController
             }
             else
             {
-                $dataInicio = convertDateTime($data['dataInicio'], $data['horaInicio']);
-                $dataFim  = convertDateTime($data['dataFim'], $data['horaFim']);
+                if(empty($data['horaInicio']) or empty($data['horaFim']))
+                {
+                    $horaI = '00:00';
+                    $horaF = '23:00';
+                }
+                else {
+                    $horaI = $data['horaInicio'];
+                    $horaF = $data['horaFim'];
+                }
+                $dataInicio = convertDateTime($data['dataInicio'], $horaI);
+                $dataFim  = convertDateTime($data['dataFim'], $horaF);
 
                 $relatorio = $this->agendamento->relatorioData($dataInicio, $dataFim);
             }
-
+        }
+        else
+        {
+            $relatorio = array();
         }
 
         echo $this->view->render("viewRelatorio", [
