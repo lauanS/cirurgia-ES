@@ -24,29 +24,6 @@
             </div>
         </div>
         <br>
-
-        <!--
-        <div class="form-group">
-            <label>Inicío da Cirurgia:</label>
-            <div class="container">
-                <div class="row">
-                    <input type="date" name="dataInicio" />
-                    <input type="time" name="horaInicio" />
-                </div>
-            </div>
-        </div>
-
-        <div class="form-group">
-            <label>Fim da Cirurgia:</label>
-            <div class="container">
-                <div class="row">
-                    <input type="date" name="dataInicio" />
-                    <input type="time" name="horaInicio" />
-                </div>
-            </div>
-        </div>
-            -->
-
         <div class="form-group">
             <label>Nome da Cirurgia:</label>
             <div class="container">
@@ -110,7 +87,7 @@
             </div>
             <div class="col">
                 <label>Convênio:</label>
-                <input type="text" class="form-control destaque" placeholder="Convênio" name="convenio">
+                <input type="text" class="form-control destaque" placeholder="Convênio" name="convenio"  disabled>
             </div>
         </div>
 
@@ -118,21 +95,21 @@
         <div class="form-row">
             <div class="col">
                 <label>Data de nascimento:</label><br>
-                <input type="date" class="form-control destaque" name="dataNascimento">
+                <input type="date" class="form-control destaque" name="dataNascimento"  disabled>
             </div>
             <div class="col">
                 <label>Telefone:</label><br>
-                <input type="tel" class="form-control destaque" placeholder="Telefone" name="telefone">
+                <input type="tel" class="form-control destaque" placeholder="Telefone" name="telefone"  disabled>
             </div>
             <div class="col">
                 <label>Sexo:</label><br>
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="opcao1">
-                    <label class="form-check-label" for="inlineCheckbox1">Mulher</label>
+                    <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="opcao1"  disabled>
+                    <label class="form-check-label" for="inlineCheckbox1">Feminino</label>
                 </div>
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="opcao2">
-                    <label class="form-check-label" for="inlineCheckbox2">Homen</label>
+                    <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="opcao2"  disabled>
+                    <label class="form-check-label" for="inlineCheckbox2">Masculino</label>
                 </div>
             </div>
         </div>
@@ -163,15 +140,15 @@
         <div class="form-row">
             <div class="col">
                 <label>CRM:</label><br>
-                <input type="text" class="form-control destaque" placeholder="CRM" name="dataNascimento">
+                <input type="text" class="form-control destaque" placeholder="CRM" name="dataNascimento"  disabled>
             </div>
             <div class="col">
                 <label>Telefone:</label><br>
-                <input type="tel" class="form-control destaque" placeholder="Telefone" name="telefone">
+                <input type="tel" class="form-control destaque" placeholder="Telefone" name="telefone"  disabled>
             </div>
         </div>
         <br>
-        <button>Agendar</button>
+        <button class="btn btn-lg btn-success">Agendar</button>
 
     </form>
 </div>

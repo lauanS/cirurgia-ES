@@ -20,7 +20,7 @@ class WebController
     {
         echo $this->view->render("home", [
             "title" => "Home | " . URL_BASE,
-            "pageTitle"=> "Home"
+            "pageTitle"=> "Agendamento Cirurgico"
         ]);
     }
 

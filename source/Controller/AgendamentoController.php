@@ -54,10 +54,7 @@ class AgendamentoController
     public function agendar($data): void
     {
         $nomePaciente = trim($data['nomePaciente']);
-        $convenio = trim($data['convenio']);
-
         $nomeMedico = trim($data['nomeMedico']);
-
         $nomeCirurgia = trim($data['cirurgia']);
 
         $dataInicio = $data['dataInicio'];
