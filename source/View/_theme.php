@@ -48,14 +48,10 @@
 
     <?= $v->section("js"); ?>
 </body>
-
-<footer class="text-muted shadow">
-    <div class="container">
-        <p></p>
-        <p><?= URL_BASE; ?> - Todos os Direitos Reservados</p>
-        <p>Engenharia de software - 2019 - G14</p>
-    </div>
-</footer>
+<br>
+<br>
+<br>
+<br>
 
 
 </html>
