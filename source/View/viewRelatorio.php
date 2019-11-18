@@ -45,9 +45,11 @@
                     <?php
                     if (!empty($relatorio)) :
                         foreach ($relatorio as $DTO) : ?>
-                            <td><?= $DTO->getCirurgia() ?> </h3>
-                            <td><?= $DTO->getMedico() ?></p>
-                            <td><?= $DTO->getPacientes() ?></p>
+                            <tr>
+                                <td><?= $DTO->getCirurgia() ?> </h3>
+                                <td><?= $DTO->getMedico() ?></p>
+                                <td><?= $DTO->getPacientes() ?></p>
+                            </tr>
                         <?php endforeach;
                         endif;
                         ?>
