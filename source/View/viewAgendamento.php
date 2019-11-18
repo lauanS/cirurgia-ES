@@ -51,7 +51,7 @@
             <label>Nome da Cirurgia:</label>
             <div class="container">
                 <div class="row">
-                    <input type="text" class="form-control destaque" placeholder="Nome da Cirurgia" name="nomeCirurgia">
+                    <input type="text" class="form-control destaque" placeholder="Nome da Cirurgia" name="cirurgia">
                 </div>
             </div>
         </div>
@@ -64,8 +64,8 @@
             </div>
             <div class="col">
                 <label>Fim da Cirurgia:</label><br>
-                <input type="date" name="dataInicio">
-                <input type="time" name="horaInicio">
+                <input type="date" name="dataFim">
+                <input type="time" name="horaFim">
             </div>
         </div>
 
@@ -171,13 +171,8 @@
             </div>
         </div>
         <br>
+        <button>Agendar</button>
 
-        <?php
-        echo var_dump($pacientes[0]->getNome());
-        ?>
-
-        <!--button>Agendar</button-->
-        <button type="button" class="btn btn-secondary btn-lg btn-block">Agendar Cirurgia</button>
     </form>
 </div>
 <?php $v->start("js"); ?>
@@ -199,4 +194,14 @@
         }
     });
 </script>
+
+    <script type='text/javascript'>
+        $(document).ready(function() {
+            $("input[name='nomePaciente']").blur(function() {
+                var nomePaciente = $("input[name='nomePaciente']");
+                var $cpf = $("input[name='cpf']");
+                var $convenio = $("input[name='convenio']");
+            });
+        });
+    </script>
 <?php $v->end("js"); ?>
