@@ -56,7 +56,6 @@ class RelatorioController
             {
                 $msg = $relatorio;
                 $relatorio = array();
-                var_dump($relatorio);
             }
         }
 
