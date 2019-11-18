@@ -33,38 +33,29 @@ class RelatorioController
     {
         $dataInicio = NULL;
         $dataFim  = NULL;
-        $msg = '';
+
         // Verifica se existe os campos de data
         if (array_key_exists("dataInicio", $data) and array_key_exists("dataFim", $data) and
             array_key_exists("horaInicio", $data) and array_key_exists("horaFim", $data)){
-            // Verifica se eles nao estao vazios
-            if (!(empty($data['dataInicio']) and empty($data['horaInicio'])
-                and empty($data['dataFim']) and empty($data['horaFim'])))
+
+            if (empty($data['dataInicio']) or empty($data['dataFim']))
+            {
+                $relatorio = $this->agendamento->relatorio();
+            }
+            else
             {
                 $dataInicio = convertDateTime($data['dataInicio'], $data['horaInicio']);
                 $dataFim  = convertDateTime($data['dataFim'], $data['horaFim']);
-            }
-        }
 
-        if(empty($dataInicio) and empty($dataFim)) {
-
-            $relatorio = $this->agendamento->relatorio();
-        }
-        else {
-            $relatorio = $this->agendamento->relatorioData($dataInicio, $dataFim);
-            if (is_string($relatorio))
-            {
-                $msg = $relatorio;
-                $relatorio = array();
+                $relatorio = $this->agendamento->relatorioData($dataInicio, $dataFim);
             }
+
         }
 
         echo $this->view->render("viewRelatorio", [
             "title" => "Relatorio | " . URL_BASE,
             "pageTitle" => "Relatorio",
-            "relatorio" => $relatorio,
-            "msg" => $msg
-            //"relatorio" => ["Cateto" => [2, "Hudson"], "Apendice" => [6, "Maicon"], "Pancreas" => [3, "Hudson"]]
+            "relatorio" => $relatorio
         ]);
     }
 }
