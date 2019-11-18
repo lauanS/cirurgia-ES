@@ -34,7 +34,9 @@
     </div>
 
     <main>
-        <?= $v->section("content"); ?>
+        <div class="row col-xs-12 col-sm-12 col-md-12 col-lg-12"  align="center">
+            <?= $v->section("content"); ?>
+        </div>
     </main>
 
     <!-- Optional JavaScript -->

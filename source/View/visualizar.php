@@ -14,7 +14,7 @@
         <input type="time" name="horaFim" />
 
         <br><br>
-        <button class="btn btn-lg btn-success">Buscar por Range de Data</button>
+        <button class="btn btn-lg btn-success">Buscar filtrando pela data</button>
         <br><br>
     </form>
 

@@ -8,10 +8,8 @@
         <div class="form-group">
             <label>Inicio da Cirurgia:</label>
             <div class="container">
-                <div class="row">
-                    <input type="date" name="dataInicio" />
-                    <input type="time" name="horaInicio" />
-                </div>
+                <input type="date" name="dataInicio" />
+                <input type="time" name="horaInicio" />
             </div>
         </div>
 
@@ -19,10 +17,8 @@
         <div class="form-group">
             <label>Fim da Cirurgia:</label>
             <div class="container">
-                <div class="row">
-                    <input type="date" name="dataFim" />
-                    <input type="time" name="horaFim" />
-                </div>
+                <input type="date" name="dataFim" />
+                <input type="time" name="horaFim" />
             </div>
         </div>
 
