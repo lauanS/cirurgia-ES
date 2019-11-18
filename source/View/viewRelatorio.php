@@ -16,7 +16,7 @@
 
 <section>
     <?php
-    if(!empty($relatorio)):
+    if(!empty($relatorio) or !is_string($relatorio)):
         foreach($relatorio as $DTO): ?>
             <article>
                 <h3><?= $DTO->getCirurgia() ?> </h3>
