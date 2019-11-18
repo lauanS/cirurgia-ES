@@ -34,34 +34,11 @@
     <section>
         <div class="col-md-6">
             <table class="table">
-                <tbody>
-                    <?php
-                    if (!empty($relatorio)) :
-                        foreach ($relatorio as $DTO) : ?>
-                            <article>
-                                <h3><?= $DTO->getCirurgia() ?> </h3>
-                                <p><?= $DTO->getMedico() ?></p>
-                                <p><?= $DTO->getPacientes() ?></p>
-                            </article>
-                    <?php endforeach;
-                    endif;
-                    ?>
-                </tbody>
-            </table>
-        </div>
-    </section>
-
-    <section>
-        <div class="col-md-6">
-            <table class="table">
                 <thead>
                     <tr>
                         <th>Medico</th>
                         <th>Paciente</th>
                         <th>Cirurgia</th>
-                        <th>Data de Inicio</th>
-                        <th>Previsão de Término</th>
-                        <th>Observação</th>
                     </tr>
                 </thead>
                 <tbody>
