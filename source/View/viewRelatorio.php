@@ -27,7 +27,7 @@
         </div>
 
         <br>
-        <button class="btn btn-lg btn-primary">Gerar Relatório</button>
+        <button class="btn btn-lg btn-success">Gerar Relatório</button>
     </form>
 
     <br><br>
